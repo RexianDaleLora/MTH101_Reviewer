@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Final Exam Reviewer</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       SIDEBAR — fixed left navigation panel
+  ════════════════════════════════════════ -->
+  <aside id="sidebar">
+
+    <div class="sb-head">
+      <h1>📐 Final Exam<br>Reviewer</h1>
+      <p>Pre-Calculus &amp; Calculus · 15 Topics</p>
+    </div>
+
+    <div class="sb-scroll">
+
+      <div style="padding:12px 14px 2px">
+        <button class="ni-quiz" onclick="goQuiz()">📝 Exam Quiz — 27 Questions</button>
+      </div>
+
+      <div class="sb-sec">Algebra</div>
+      <button class="ni active" id="nav-home" onclick="goHome()">
+        <span class="ni-num" style="background:var(--blue-bg);color:var(--blue)">⌂</span>
+        Overview
+      </button>
+      <button class="ni" id="n1"  onclick="goTopic(1)"><span class="ni-num">1</span>Inequality</button>
+      <button class="ni" id="n2"  onclick="goTopic(2)"><span class="ni-num">2</span>Absolute Value</button>
+      <button class="ni" id="n3"  onclick="goTopic(3)"><span class="ni-num">3</span>Plotting Points</button>
+      <button class="ni" id="n4"  onclick="goTopic(4)"><span class="ni-num">4</span>Intercepts</button>
+      <button class="ni" id="n5"  onclick="goTopic(5)"><span class="ni-num">5</span>Function</button>
+      <button class="ni" id="n6"  onclick="goTopic(6)"><span class="ni-num">6</span>Slope of a Line</button>
+      <button class="ni" id="n7"  onclick="goTopic(7)"><span class="ni-num">7</span>Slope-Intercept Form</button>
+
+      <div class="sb-sec">Conic Sections</div>
+      <button class="ni" id="n8"  onclick="goTopic(8)"><span class="ni-num">8</span>Parabola</button>
+      <button class="ni" id="n9"  onclick="goTopic(9)"><span class="ni-num">9</span>Circle</button>
+
+      <div class="sb-sec">Calculus</div>
+      <button class="ni" id="n10" onclick="goTopic(10)"><span class="ni-num">10</span>Domain</button>
+      <button class="ni" id="n11" onclick="goTopic(11)"><span class="ni-num">11</span>Operations of Functions</button>
+      <button class="ni" id="n12" onclick="goTopic(12)"><span class="ni-num">12</span>Limit Theorem</button>
+      <button class="ni" id="n13" onclick="goTopic(13)"><span class="ni-num">13</span>Graph of Limits</button>
+      <button class="ni" id="n14" onclick="goTopic(14)"><span class="ni-num">14</span>Differentiation Rules</button>
+      <button class="ni" id="n15" onclick="goTopic(15)"><span class="ni-num">15</span>Velocity Problems</button>
+
+      <div style="height:10px"></div>
+    </div>
+
+    <div class="sb-foot">Good Luck Nigga</div>
+
+  </aside>
+
+
+  <!-- ═══════════════════════════════════════
+       MAIN CONTENT AREA
+  ════════════════════════════════════════ -->
+  <main id="main">
+
+    <!-- ── HOME PAGE ── -->
+    <div id="pg-home" class="page active">
+
+      <div class="home-hero">
+        <div class="hero-chip">📅 Final Exam Preparation Guide</div>
+        <h2 class="hero-h">Your Complete<br><em>Math Reviewer</em></h2>
+        <p class="hero-p">All 15 exam topics with full explanations, worked examples, visual graphs, and an interactive quiz to test yourself before the big day.</p>
+        <div class="hero-stats">
+          <div><div class="hs-val">15</div><div class="hs-lbl">Topics</div></div>
+          <div><div class="hs-val">11</div><div class="hs-lbl">Graphs</div></div>
+          <div><div class="hs-val">27</div><div class="hs-lbl">Questions</div></div>
+          <div><div class="hs-val">3</div><div class="hs-lbl">Test Sections</div></div>
+        </div>
+      </div>
+
+      <div class="home-body">
+        <div class="sec-h">All Topics</div>
+        <div class="sec-sub">Click any card to open full notes, examples, and graphs.</div>
+
+        <div class="cat-tabs">
+          <button class="ctab active" onclick="filterCat('all',this)">All (15)</button>
+          <button class="ctab" onclick="filterCat('algebra',this)">Algebra (1–7)</button>
+          <button class="ctab" onclick="filterCat('conic',this)">Conic Sections (8–9)</button>
+          <button class="ctab" onclick="filterCat('calculus',this)">Calculus (10–15)</button>
+        </div>
+
+        <!-- Topic cards are injected here by app.js -->
+        <div id="tgrid" class="tgrid"></div>
+      </div>
+
+    </div><!-- /#pg-home -->
+
+
+    <!-- ── TOPIC PAGE ── -->
+    <div id="pg-topic" class="page">
+
+      <div class="topic-topbar">
+        <div class="bc">
+          <span class="bc-link" onclick="goHome()">Home</span>
+          <span>›</span>
+          <span id="bc-cat" style="color:var(--muted)"></span>
+          <span>›</span>
+          <span id="bc-title" style="color:var(--ink);font-weight:600"></span>
+        </div>
+      </div>
+
+      <div class="topic-layout">
+        <!-- Main content injected by app.js -->
+        <div class="topic-main" id="tmain"></div>
+        <!-- Aside (key facts + mini nav) injected by app.js -->
+        <aside class="topic-aside" id="taside"></aside>
+      </div>
+
+    </div><!-- /#pg-topic -->
+
+
+    <!-- ── QUIZ PAGE ── -->
+    <div id="pg-quiz" class="page">
+
+      <div class="quiz-topbar">
+        <button class="back-btn" onclick="goHome()">← Back</button>
+        <h2>Exam Questionnaire</h2>
+      </div>
+
+      <div class="quiz-body">
+
+        <div class="ttabs">
+          <button class="ttab active" onclick="setTest('test1',this)">Test I — Short Response (15)</button>
+          <button class="ttab" onclick="setTest('test2',this)">Test II — Derivatives (10)</button>
+          <button class="ttab" onclick="setTest('test3',this)">Test III — Problem Solving (2)</button>
+        </div>
+
+        <div class="prog-wrap">
+          <div class="prog-txt" id="prog-txt">Reveal answers and mark them to track your score.</div>
+          <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+        </div>
+
+        <!-- Question cards injected by app.js -->
+        <div id="qlist"></div>
+
+        <div class="result-box" id="result-box">
+          <div class="r-emoji">🎉</div>
+          <div class="r-title">Section Complete!</div>
+          <span class="r-score" id="r-score"></span>
+          <div class="r-msg" id="r-msg"></div>
+        </div>
+
+      </div>
+    </div><!-- /#pg-quiz -->
+
+  </main><!-- /#main -->
+
+
+  <!-- ═══════════════════════════════════════
+       SCRIPTS — loaded in dependency order
+  ════════════════════════════════════════ -->
+  <script src="data.js"></script>    <!-- Topic content & quiz questions -->
+  <script src="graphs.js"></script>  <!-- SVG graph drawing functions    -->
+  <script src="app.js"></script>     <!-- UI logic & navigation          -->
+
+</body>
+</html>
